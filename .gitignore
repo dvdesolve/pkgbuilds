@@ -1,0 +1,9 @@
+# source snapshots
+*.tar.gz
+*.tar.bz2
+
+# binary packages
+*.zst
+
+# staging packages
+staging/
