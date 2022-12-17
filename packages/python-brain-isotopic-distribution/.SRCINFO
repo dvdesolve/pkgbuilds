@@ -1,0 +1,18 @@
+pkgbase = python-brain-isotopic-distribution
+	pkgdesc = Fast and efficient theoretical isotopic profile generation
+	pkgver = 1.5.11
+	pkgrel = 1
+	url = http://pypi.python.org/pypi/brain-isotopic-distribution
+	arch = i686
+	arch = x86_64
+	license = Apache-2.0
+	makedepends = cython
+	makedepends = python-setuptools
+	makedepends = python-build
+	makedepends = python-installer
+	makedepends = python-wheel
+	depends = python
+	source = https://files.pythonhosted.org/packages/source/b/brain-isotopic-distribution/brain-isotopic-distribution-1.5.11.tar.gz
+	sha256sums = df260aed3c5891fbeee99f13d9463cc500fb57cfc992f2d3fafc7626218f1d36
+
+pkgname = python-brain-isotopic-distribution
