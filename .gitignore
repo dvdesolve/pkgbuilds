@@ -1,6 +1,7 @@
 # source snapshots
 *.tar.gz
 *.tar.bz2
+*.tar.xz
 
 # binary packages
 *.zst
