@@ -1,0 +1,60 @@
+# Maintainer: Viktor Drobot (aka dviktor) linux776 [at] gmail [dot] com
+# Contributor : anish [ at ] gatech [dot] edu
+
+pkgname=dump1090-fa-git
+_pkgname=${pkgname%-fa-git}
+pkgver=r1967.e3b3fa87
+pkgrel=1
+pkgdesc="Dump1090 is a simple Mode S decoder for RTLSDR devices"
+arch=(i686 x86_64)
+url="https://github.com/flightaware/dump1090"
+license=(GPL2)
+depends=(rtl-sdr bladerf hackrf limesuite glibc ncurses)
+makedepends=(git patch)
+optdepends=('lighttpd: interactive map display support')
+provides=(dump1090)
+conflicts=(dump1090)
+source=("${_pkgname}::git+https://github.com/flightaware/dump1090"
+        "dump1090.service"
+        "lighttpd.conf"
+        "wisdom.patch")
+backup=("usr/share/${_pkgname}/html/config.js")
+install='dump1090-fa.install'
+sha256sums=('SKIP'
+            '137a74e573b6fbace7bf39e5ccf77f2ee4f5f5bbb08efb3634a82f8f2cdfd2aa'
+            'cd1667653410c6e3a2d8b0069b6e2ef4f92ade686530529c74fe60c26d1b3e4f'
+            'c920cba6bf466173c4a52a3ebb5611f301f2123e8ed3b403b7d2f42ac751c303')
+
+pkgver() {
+  cd "${srcdir}/${_pkgname}"
+
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+prepare() {
+  cd "${srcdir}/${_pkgname}"
+
+  patch -Np0 -i "${srcdir}/wisdom.patch"
+}
+
+build() {
+  cd "${srcdir}/${_pkgname}"
+
+  make all faup1090 EXTRACFLAGS=-DHTMLPATH=\\\"/usr/share/${_pkgname}/html\\\"
+}
+
+package() {
+  install -dm755 "${pkgdir}/usr/share/${_pkgname}/html"
+  install -dm755 "${pkgdir}/usr/share/${_pkgname}/bladerf"
+
+  install -Dm755 "${srcdir}/${_pkgname}/dump1090" "${pkgdir}/usr/bin/dump1090"
+  install -Dm755 "${srcdir}/${_pkgname}/view1090" "${pkgdir}/usr/bin/view1090"
+  install -Dm755 "${srcdir}/${_pkgname}/faup1090" "${pkgdir}/usr/lib/piaware/helpers/faup1090"
+  install -Dm755 "${srcdir}/${_pkgname}/starch-benchmark" "${pkgdir}/usr/lib/${_pkgname}/starch-benchmark"
+  install -Dm755 "${srcdir}/${_pkgname}/debian/generate-wisdom" "${pkgdir}/usr/lib/${_pkgname}/generate-wisdom"
+  install -Dm644 "${srcdir}/dump1090.service" "${pkgdir}/usr/lib/systemd/system/dump1090.service"
+  install -Dm644 "${srcdir}"/lighttpd.conf "${pkgdir}/usr/share/${_pkgname}/lighttpd.conf"
+
+  cp -r "${srcdir}"/"${_pkgname}"/public_html/* "${pkgdir}/usr/share/${_pkgname}/html"
+  cp -r "${srcdir}"/"${_pkgname}"/bladerf/* "${pkgdir}/usr/share/${_pkgname}/bladerf"
+}

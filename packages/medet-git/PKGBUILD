@@ -14,20 +14,20 @@ source=("${pkgname}::git+https://github.com/artlav/meteor_decoder.git")
 sha256sums=('SKIP')
 
 pkgver() {
-  cd "${pkgname}"
+  cd "${srcdir}/${pkgname}"
 
   printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 build() {
-  cd "${pkgname}"
+  cd "${srcdir}/${pkgname}"
 
   mkdir units
   fpc -CX -XX -O3 -Mdelphi -FUunits -Fualib medet.dpr
 }
 
 package() {
-  cd "${pkgname}"
+  cd "${srcdir}/${pkgname}"
 
   install -Dm755 medet "${pkgdir}/usr/bin/medet"
 }

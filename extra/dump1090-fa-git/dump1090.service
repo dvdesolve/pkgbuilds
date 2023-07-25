@@ -1,0 +1,19 @@
+[Unit]
+Description=dump1090 ADS-B receiver (FlightAware customization)
+Wants=network-online.target
+After=syslog.target network-online.target lighttpd.service
+
+[Service]
+Restart=on-failure
+RestartSec=30
+RuntimeDirectory=dump1090
+RuntimeDirectoryMode=0755
+#PermissionsStartOnly=true
+ExecStart=/usr/bin/dump1090 --quiet --net --adaptive-range --write-json /var/run/dump1090
+RestartPreventExitStatus=64
+Nice=-5
+
+
+[Install]
+Alias=dump1090-fa.service
+WantedBy=multi-user.target

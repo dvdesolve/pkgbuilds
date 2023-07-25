@@ -17,13 +17,13 @@ source=("${pkgname}::git+https://github.com/dvdesolve/glrpt.git")
 sha256sums=('SKIP')
 
 pkgver() {
-  cd "${pkgname}"
+  cd "${srcdir}/${pkgname}"
 
   printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 build() {
-  cd "${pkgname}"
+  cd "${srcdir}/${pkgname}"
 
   mkdir build
   cd build
@@ -33,7 +33,7 @@ build() {
 }
 
 package() {
-  cd "${pkgname}"
+  cd "${srcdir}/${pkgname}"
 
   cd build
   make DESTDIR="${pkgdir}" install

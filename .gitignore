@@ -14,3 +14,4 @@ staging/
 *prepare.log
 *build.log
 *package.log
+*pkgver.log

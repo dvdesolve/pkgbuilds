@@ -15,13 +15,13 @@ source=("${pkgname}::git+https://github.com/dbdexter-dev/meteor_rectify.git")
 sha256sums=('SKIP')
 
 pkgver() {
-  cd "${pkgname}"
+  cd "${srcdir}/${pkgname}"
 
   printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 package() {
-  cd "${pkgname}"
+  cd "${srcdir}/${pkgname}"
 
   install -Dm755 rectify.py "${pkgdir}/usr/bin/meteor_rectify"
 }
