@@ -1,0 +1,34 @@
+# Maintainer: Viktor Drobot (aka dviktor) linux776 [at] gmail [dot] com
+# Contributor: Sven Karsten Greiner <sven@sammyshp.de>
+
+pkgname=acarsserv-git
+pkgver=r8.a191e1f
+pkgrel=1
+pkgdesc="Writes messages from acarsdec or vdlm2dec into sqlite database"
+arch=(x86_64)
+license=(GPL2)
+url="https://github.com/TLeconte/acarsserv"
+depends=(sqlite)
+makedepends=(git)
+provides=(acarsserv)
+conflicts=(acarsserv)
+source=("${pkgname}::git+https://github.com/TLeconte/acarsserv.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "${srcdir}/${pkgname}"
+
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+  cd "${srcdir}/${pkgname}"
+
+  make -f Makefile
+}
+
+package() {
+  cd "${srcdir}/${pkgname}"
+
+  install -Dm755 acarsserv "${pkgdir}/usr/bin/acarsserv"
+}

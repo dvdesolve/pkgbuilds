@@ -5,6 +5,7 @@
 
 # binary packages
 *.zst
+*.run
 
 # staging packages
 staging/

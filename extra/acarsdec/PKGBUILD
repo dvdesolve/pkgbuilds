@@ -1,0 +1,39 @@
+# Maintainer: Viktor Drobot (aka dviktor) linux776 [at] gmail [dot] com
+# Contributor: Sven Karsten Greiner <sven@sammyshp.de>
+# Contributor: Michal Krenek (Mikos) <m.krenek@gmail.com>
+
+pkgname=acarsdec
+pkgver=3.7
+pkgrel=1
+pkgdesc="ACARS SDR decoder"
+url="https://github.com/TLeconte/acarsdec"
+license=(custom)
+arch=(x86_64)
+depends=(libusb rtl-sdr airspy)
+makedepends=(cmake)
+optdepends=('acarsserv: Store messages in sqlite database')
+source=("https://github.com/TLeconte/acarsdec/archive/${pkgname}-${pkgver}.tar.gz")
+sha256sums=('1cb8cab03642bfdfcefb7b003f292cfac0f11051ff07666e714bbb4905717005')
+
+build() {
+  cd "${pkgname}-${pkgname}-${pkgver}"
+
+  mkdir -p build-airspy
+  cd build-airspy
+  cmake .. -Dairspy=ON
+  make
+  cd ..
+
+  mkdir -p build-rtlsdr
+  cd build-rtlsdr
+  cmake .. -Drtl=ON
+  make
+  cd ..
+}
+
+package() {
+  cd "${pkgname}-${pkgname}-${pkgver}"
+
+  install -Dm755 build-airspy/acarsdec "${pkgdir}/usr/bin/acarsdec-airspy"
+  install -Dm755 build-rtlsdr/acarsdec "${pkgdir}/usr/bin/acarsdec-rtlsdr"
+}

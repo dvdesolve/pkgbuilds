@@ -1,0 +1,31 @@
+# Maintainer: Viktor Drobot (aka dviktor) linux776 [at] gmail [dot] com
+# Contributor: Tobias Markus < tobias AT miglix DOT eu >
+
+pkgname=libacars
+pkgver=2.1.4
+pkgrel=1
+pkgdesc="A library for decoding various ACARS message payloads"
+url="https://github.com/szpajder/libacars"
+license=(MIT)
+arch=(x86_64)
+depends=(zlib libxml2)
+makedepends=(cmake)
+source=("https://github.com/szpajder/libacars/archive/v${pkgver}.tar.gz")
+sha256sums=('1a4589a919e54e23046583c15f5a46f850b9dd2f25a6f57829d05e1b4da88b70')
+
+build() {
+  cd "${srcdir}"
+
+  cmake -B build \
+      -S "${pkgname}-${pkgver}" \
+      -Wno-dev \
+      -DCMAKE_INSTALL_PREFIX=/usr \
+      -DCMAKE_BUILD_TYPE=None
+  cmake --build build
+}
+
+package() {
+  cd "${srcdir}"
+
+  DESTDIR="${pkgdir}" cmake --install build
+}

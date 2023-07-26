@@ -1,0 +1,21 @@
+pkgbase = qsstv
+	pkgdesc = Receive and transmit images over radio using analog SSTV or digital DRM
+	pkgver = 9.5.8
+	pkgrel = 3
+	url = https://github.com/ON4QZ/QSSTV
+	arch = i686
+	arch = x86_64
+	license = GPL3
+	depends = qt5-base
+	depends = libpulse
+	depends = v4l-utils
+	depends = hamlib
+	depends = fftw
+	depends = openjpeg2
+	depends = alsa-lib
+	source = https://www.qsl.net/o/on4qz//qsstv/downloads/qsstv_9.5.8.tar.gz
+	source = qsstv.desktop
+	sha256sums = c03f7fa5c680ced8fd331c25ff3e47440c9aedb48ec7b66255c6aa0ed88e7a68
+	sha256sums = dd464d07499b9002ddcd71a94a6e2c2a68264d80b39ab8bf89bfd1a475108286
+
+pkgname = qsstv

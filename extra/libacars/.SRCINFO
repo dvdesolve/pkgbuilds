@@ -1,0 +1,14 @@
+pkgbase = libacars
+	pkgdesc = A library for decoding various ACARS message payloads
+	pkgver = 2.1.4
+	pkgrel = 1
+	url = https://github.com/szpajder/libacars
+	arch = x86_64
+	license = MIT
+	makedepends = cmake
+	depends = zlib
+	depends = libxml2
+	source = https://github.com/szpajder/libacars/archive/v2.1.4.tar.gz
+	sha256sums = 1a4589a919e54e23046583c15f5a46f850b9dd2f25a6f57829d05e1b4da88b70
+
+pkgname = libacars
