@@ -1,0 +1,16 @@
+pkgbase = hamradio-menus
+	pkgdesc = Ham radio (specific) XDG-compliant menu
+	pkgver = 1.0
+	pkgrel = 2
+	url = http://www.archlinux.org/
+	arch = any
+	license = GPL
+	depends = desktop-file-utils
+	source = hamradio.png
+	source = HamRadio.directory
+	source = hamradio.menu
+	sha256sums = e55aabbf91ad110672d87290582705a55c6a52bb5b487c7bd195f5e18cc550b3
+	sha256sums = 4bcaaa1ca3f7e0d31aac3cf51399f0a1c6ac0c1192231e8311f00cf688ad977a
+	sha256sums = d9a8c97b934e19e0c3a7be03664eb892390dc5f978180f7b924a30a481ec66e2
+
+pkgname = hamradio-menus

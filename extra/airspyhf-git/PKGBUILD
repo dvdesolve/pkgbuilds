@@ -1,0 +1,42 @@
+# Maintainer: Viktor Drobot (aka dviktor) linux776 [at] gmail [dot] com
+# Contributor: Konrad Beckmann <konrad.beckmann@gmail.com>
+
+pkgname=airspyhf-git
+_pkgname=${pkgname%-git}
+pkgver=r119.40836c5
+pkgrel=1
+pkgdesc="Host code for AirspyHF+ SDR."
+arch=(i686 x86_64)
+url="http://www.airspy.com"
+license=(BSD)
+depends=('libusb>=1.0')
+provides=(airspyhf)
+conflicts=(airspyhf)
+makedepends=(git cmake)
+source=("${_pkgname}::git+https://github.com/airspy/airspyhf"
+        "52-airspyhf.rules")
+sha256sums=('SKIP'
+            '5106084fb3404b04bd2d598c819cff12d095f849a1fdd7549748279ce47f5f21')
+
+pkgver() {
+  cd "${srcdir}/${_pkgname}"
+
+  printf 'r%s.%s' "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+  cd "${srcdir}/${_pkgname}"
+
+  mkdir -p build
+  cd build
+
+  cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr -Wno-dev ../
+  make
+}
+
+package() {
+  install -Dm644 "52-airspyhf.rules" "${pkgdir}/usr/lib/udev/rules.d/52-airspyhf.rules"
+
+  cd "${srcdir}/${_pkgname}/build"
+  make DESTDIR="${pkgdir}" install
+}

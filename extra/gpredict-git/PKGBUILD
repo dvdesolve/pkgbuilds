@@ -1,0 +1,51 @@
+# Maintainer: Viktor Drobot (aka dviktor) linux776 [at] gmail [dot] com
+# Contributor: not_anonymous <nmlibertarian@gmail.com>
+# Contributor: Andrey Semisokhin <customs.rnd@gmail.com>
+# Contributor: Bob Finch <w9ya@qrparci.net>
+
+pkgname=gpredict-git
+_pkgname=${pkgname%-git}
+pkgver=r1629.0f3beb6
+pkgrel=1
+pkgdesc="Gpredict is a real-time satellite tracking and orbit prediction application."
+arch=(i686 x86_64)
+url="http://gpredict.oz9aec.net/"
+license=(GPL2)
+depends=('curl>=7.19' 'goocanvas>=2')
+makedepends=(git autoconf automake intltool)
+optdepends=('hamlib: rig interfacing/control'
+            'libreoffice: read /usr/share/doc/gpredict/um/gredict-user-manual.odt')
+provides=(gpredict)
+conflicts=(gpredict)
+options=(!emptydirs)
+source=("${_pkgname}::git+https://github.com/csete/${_pkgname}.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "${srcdir}/${_pkgname}"
+
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+  cd "${srcdir}/${_pkgname}"
+
+  ./autogen.sh
+  ./configure --prefix=/usr
+
+  make
+}
+
+package() {
+  cd "${srcdir}/${_pkgname}"
+
+  make DESTDIR=${pkgdir} install
+
+  mkdir -p "${pkgdir}/usr/share/doc/${_pkgname}/"{notes,um}
+  cp -r doc/notes/* "${pkgdir}/usr/share/doc/${_pkgname}/notes"
+  cp -r doc/um/* "${pkgdir}/usr/share/doc/${_pkgname}/um"
+
+  rm -rf "${pkgdir}/usr/share/${_pkgname}/COPYING"
+  sed -i '$ a\X-DCOP-ServiceType=none' "${pkgdir}/usr/share/applications/${_pkgname}.desktop"
+  sed -i '$ a\X-KDE-SubstituteUID=false' "${pkgdir}/usr/share/applications/${_pkgname}.desktop"
+}

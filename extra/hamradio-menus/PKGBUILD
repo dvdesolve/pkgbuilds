@@ -1,0 +1,30 @@
+# Maintainer: Viktor Drobot (aka dviktor) linux776 [at] gmail [dot] com
+# Contributor: not_anonymous <nmlibertarian@gmail.com>
+# Contributor: Bob Finch <w9ya@qrparci.net>
+
+pkgname=hamradio-menus
+pkgver=1.0
+pkgrel=2
+pkgdesc="Ham radio (specific) XDG-compliant menu"
+arch=(any)
+url="http://www.archlinux.org/"
+license=(GPL)
+depends=(desktop-file-utils)
+source=(hamradio.png
+        HamRadio.directory
+        hamradio.menu)
+sha256sums=('e55aabbf91ad110672d87290582705a55c6a52bb5b487c7bd195f5e18cc550b3'
+            '4bcaaa1ca3f7e0d31aac3cf51399f0a1c6ac0c1192231e8311f00cf688ad977a'
+            'd9a8c97b934e19e0c3a7be03664eb892390dc5f978180f7b924a30a481ec66e2')
+
+package() {
+  cd "${srcdir}"
+
+  mkdir -p "${pkgdir}/etc/xdg/menus/applications-merged"
+  mkdir -p "${pkgdir}/etc/xdg/menus/kde-applications-merged"
+
+  install -Dm644 HamRadio.directory "${pkgdir}/usr/share/desktop-directories/HamRadio.directory"
+  install -Dm644 hamradio.png "${pkgdir}/usr/share/pixmaps/hamradio/hamradio.png"
+  install -Dm644 hamradio.menu "${pkgdir}/etc/xdg/menus/applications-merged/hamradio.menu"
+  install -Dm644 hamradio.menu "${pkgdir}/etc/xdg/menus/kde-applications-merged/hamradio.menu"
+}

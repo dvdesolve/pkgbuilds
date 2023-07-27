@@ -1,0 +1,26 @@
+# Maintainer: Viktor Drobot (aka dviktor) linux776 [at] gmail [dot] com
+# Contributor: not_anonymous <nmlibertarian@gmail.com>
+
+pkgname=flxmlrpc
+pkgver=1.0.1
+pkgrel=3
+pkgdesc="XMLRPC for fldigi and other Ham Radio apps"
+arch=(i686 x86_64)
+url="http://www.w1hkj.com/downloads/flxmlrpc/"
+license=(GPL3)
+makedepends=(git automake autoconf pkg-config)
+source=("${pkgname}-${pkgver}::git+https://git.code.sf.net/p/fldigi/flxmlrpc#tag=v${pkgver}")
+sha256sums=('SKIP')
+
+build() {
+  cd "${srcdir}/${pkgname}-${pkgver}"
+
+  autoreconf --install
+  ./configure --prefix=/usr
+}
+
+package() {
+  cd "${srcdir}/${pkgname}-${pkgver}"
+
+  make DESTDIR="${pkgdir}" install
+}
