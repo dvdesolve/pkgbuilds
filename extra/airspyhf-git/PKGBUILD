@@ -3,7 +3,7 @@
 
 pkgname=airspyhf-git
 _pkgname=${pkgname%-git}
-pkgver=r119.40836c5
+pkgver=r124.39f06a4
 pkgrel=1
 pkgdesc="Host code for AirspyHF+ SDR."
 arch=(i686 x86_64)

@@ -1,11 +1,10 @@
 pkgbase = hamradio-menus
 	pkgdesc = Ham radio (specific) XDG-compliant menu
 	pkgver = 1.0
-	pkgrel = 2
+	pkgrel = 3
 	url = http://www.archlinux.org/
 	arch = any
 	license = GPL
-	depends = desktop-file-utils
 	source = hamradio.png
 	source = HamRadio.directory
 	source = hamradio.menu

@@ -5,7 +5,7 @@
 
 pkgname=gpredict-git
 _pkgname=${pkgname%-git}
-pkgver=r1629.0f3beb6
+pkgver=r1646.098e376
 pkgrel=1
 pkgdesc="Gpredict is a real-time satellite tracking and orbit prediction application."
 arch=(i686 x86_64)

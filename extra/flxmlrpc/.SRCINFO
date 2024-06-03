@@ -11,6 +11,6 @@ pkgbase = flxmlrpc
 	makedepends = autoconf
 	makedepends = pkg-config
 	source = flxmlrpc-1.0.1::git+https://git.code.sf.net/p/fldigi/flxmlrpc#tag=v1.0.1
-	sha256sums = SKIP
+	sha256sums = 3b4e5b9ea5bca297120d7dddf9accf21732160e4a0b559f0f3c615676f10507b
 
 pkgname = flxmlrpc

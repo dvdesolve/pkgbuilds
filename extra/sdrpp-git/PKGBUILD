@@ -5,7 +5,7 @@
 
 pkgname=sdrpp-git
 _pkgname=${pkgname%-git}
-pkgver=r1414.6fa4299
+pkgver=r1614.762444d3
 pkgrel=1
 pkgdesc="The bloat-free SDR receiver"
 arch=(x86_64)

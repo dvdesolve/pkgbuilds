@@ -10,7 +10,7 @@ url="http://www.w1hkj.com/downloads/flxmlrpc/"
 license=(GPL3)
 makedepends=(git automake autoconf pkg-config)
 source=("${pkgname}-${pkgver}::git+https://git.code.sf.net/p/fldigi/flxmlrpc#tag=v${pkgver}")
-sha256sums=('SKIP')
+sha256sums=('3b4e5b9ea5bca297120d7dddf9accf21732160e4a0b559f0f3c615676f10507b')
 
 build() {
   cd "${srcdir}/${pkgname}-${pkgver}"

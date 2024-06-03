@@ -1,6 +1,6 @@
 pkgbase = airspyhf-git
 	pkgdesc = Host code for AirspyHF+ SDR.
-	pkgver = r119.40836c5
+	pkgver = r124.39f06a4
 	pkgrel = 1
 	url = http://www.airspy.com
 	arch = i686
