@@ -11,7 +11,8 @@ pkgbase = gpredict-git
 	makedepends = automake
 	makedepends = intltool
 	depends = curl>=7.19
-	depends = goocanvas>=2
+	depends = goocanvas
+	depends = hamradio-menus
 	optdepends = hamlib: rig interfacing/control
 	optdepends = libreoffice: read /usr/share/doc/gpredict/um/gredict-user-manual.odt
 	provides = gpredict
