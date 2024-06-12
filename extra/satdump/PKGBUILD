@@ -1,0 +1,30 @@
+# Maintainer: Viktor Drobot (aka dviktor) linux776 [at] gmail [dot] com
+# Contributor: Andrew O'Neill <andrew at haunted dot sh>
+
+pkgname=satdump
+pkgver=1.2.0
+pkgrel=1
+pkgdesc="A generic satellite processing software"
+url="https://github.com/altillimity/SatDump"
+license=(GPL3)
+arch=(x86_64)
+depends=(airspy fftw glfw hackrf jemalloc libad9361 libpng libtiff libvolk nng ocl-icd portaudio rtl-sdr zstd)
+makedepends=(boost cmake opencl-headers)
+optdepends=(limesuite bladerf)
+source=("${pkgname}-${pkgver}.tar.gz::${url}/archive/${pkgver}.tar.gz")
+sha256sums=('099d51864a0a3e374b0d12a9ad13d8ac263b9ab0cb88d4e5b08c2b72b9afb20e')
+
+build() {
+  cd "${srcdir}/SatDump-${pkgver}"
+
+  mkdir build
+  cd build
+  cmake -DCMAKE_BUILD_TYPE=Release ..
+  make
+}
+
+package() {
+  cd "${srcdir}/SatDump-${pkgver}/build"
+
+  make DESTDIR="${pkgdir}" install
+}

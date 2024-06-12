@@ -1,0 +1,16 @@
+pkgbase = nng
+	pkgdesc = Rewrite of the SP protocol library known as libnanomsg
+	pkgver = 1.6.0
+	pkgrel = 1
+	url = https://nanomsg.github.io/nng
+	arch = i686
+	arch = x86_64
+	license = MIT
+	makedepends = cmake
+	makedepends = ninja
+	makedepends = asciidoctor
+	depends = mbedtls
+	source = https://github.com/nanomsg/nng/archive/v1.6.0.tar.gz
+	sha256sums = f639e77911ef935a13e9779d4a18d45490433ba744f89752a15b84c929ce2725
+
+pkgname = nng
