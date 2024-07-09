@@ -1,10 +1,11 @@
-pkgbase = satdump
+pkgbase = satdump-git
 	pkgdesc = A generic satellite processing software
-	pkgver = 1.2.0
+	pkgver = r5040.cba4d191
 	pkgrel = 1
 	url = https://github.com/SatDump/SatDump
 	arch = x86_64
 	license = GPL3
+	makedepends = git
 	makedepends = boost
 	makedepends = cmake
 	makedepends = opencl-headers
@@ -24,7 +25,9 @@ pkgbase = satdump
 	depends = zstd
 	optdepends = limesuite
 	optdepends = bladerf
-	source = satdump-1.2.0.tar.gz::https://github.com/SatDump/SatDump/archive/1.2.0.tar.gz
-	sha256sums = 099d51864a0a3e374b0d12a9ad13d8ac263b9ab0cb88d4e5b08c2b72b9afb20e
+	provides = satdump
+	conflicts = satdump
+	source = satdump-git::git+https://github.com/SatDump/SatDump.git
+	sha256sums = SKIP
 
-pkgname = satdump
+pkgname = satdump-git

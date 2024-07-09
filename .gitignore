@@ -11,6 +11,9 @@
 # staging packages
 staging/
 
+# signature files
+*.sig
+
 # build output
 *namcap.log
 *prepare.log
