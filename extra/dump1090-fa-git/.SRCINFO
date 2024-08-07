@@ -1,6 +1,6 @@
 pkgbase = dump1090-fa-git
 	pkgdesc = Dump1090 is a simple Mode S decoder for RTLSDR devices
-	pkgver = r1967.e3b3fa87
+	pkgver = r2025.e4b3c36
 	pkgrel = 1
 	url = https://github.com/flightaware/dump1090
 	install = dump1090-fa.install
@@ -18,7 +18,7 @@ pkgbase = dump1090-fa-git
 	provides = dump1090
 	conflicts = dump1090
 	backup = usr/share/dump1090/html/config.js
-	source = dump1090::git+https://github.com/flightaware/dump1090
+	source = dump1090::git+https://github.com/flightaware/dump1090#branch=dev
 	source = dump1090.service
 	source = lighttpd.conf
 	source = wisdom.patch

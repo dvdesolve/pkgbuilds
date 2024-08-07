@@ -1,6 +1,6 @@
 pkgbase = satdump-git
 	pkgdesc = A generic satellite processing software
-	pkgver = r5040.cba4d191
+	pkgver = r5137.460b9256
 	pkgrel = 1
 	url = https://github.com/SatDump/SatDump
 	arch = x86_64

@@ -1,0 +1,52 @@
+# Maintainer: Viktor Drobot (aka dviktor) linux776 [at] gmail [dot] com
+# Contributor: Peter Ivanov <ivanovp@gmail.com>
+# Contributor: Dominik Heidler <dheidler@gmail.com>
+
+pkgname=gqrx-git
+pkgver=r2571.4c825c19
+pkgrel=1
+pkgdesc="SDR receiver for Funcube Dongle, RTL-SDR, USRP and OsmoSDR devices"
+url="http://gqrx.dk/"
+license=(GPL)
+arch=(i686 x86_64)
+depends=(qt5-base qt5-svg boost-libs fftw libusb gsl alsa-lib libpulse libuhd pulse-native-provider gnuradio gnuradio-osmosdr)
+makedepends=(make patch boost git cmake)
+optdepends=('gr-osmosdr-git: support of OsmoSDR devices')
+provides=(gqrx)
+conflicts=(gqrx)
+source=("${pkgname}::git+https://github.com/csete/gqrx.git"
+        "21-fcd.rules"
+        "gqrx.png"
+        "gqrx.desktop")
+sha256sums=('SKIP'
+            '490fdc3e16c8d6ae38894896f622531e2bf617963165ce2430a3c132d91ba5e5'
+            'abb0c2598830c9fe728d8cd0d2f187d10331f7cb607520ff3664afd67a3a279d'
+            'c67ff791ff9e1380e207ea9af32a0273f738a6b19d3b11251a94b931d6c00434')
+
+pkgver() {
+  cd "${srcdir}/${pkgname}"
+
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+  cd "${srcdir}/${pkgname}"
+
+  cmake .
+  make
+}
+
+package() {
+  cd "${srcdir}"
+
+  install -m755 -d "${pkgdir}/etc/udev/rules.d"
+  install -m755 -d "${pkgdir}/usr/{bin,share/applications,share/pixmaps}"
+
+  install -D -m644 21-fcd.rules "${pkgdir}/etc/udev/rules.d"
+  install -D -m644 gqrx.desktop "${pkgdir}/usr/share/applications"
+  install -D -m644 gqrx.png "${pkgdir}/usr/share/pixmaps"
+
+  cd "${pkgname}/src"
+
+  install -D -m755 gqrx "${pkgdir}/usr/bin"
+}

@@ -3,7 +3,7 @@
 
 pkgname=dump1090-fa-git
 _pkgname=${pkgname%-fa-git}
-pkgver=r1967.e3b3fa87
+pkgver=r2025.e4b3c368
 pkgrel=1
 pkgdesc="Dump1090 is a simple Mode S decoder for RTLSDR devices"
 arch=(i686 x86_64)
@@ -14,7 +14,7 @@ makedepends=(git patch)
 optdepends=('lighttpd: interactive map display support')
 provides=(dump1090)
 conflicts=(dump1090)
-source=("${_pkgname}::git+https://github.com/flightaware/dump1090"
+source=("${_pkgname}::git+https://github.com/flightaware/dump1090#branch=dev"
         "dump1090.service"
         "lighttpd.conf"
         "wisdom.patch")
