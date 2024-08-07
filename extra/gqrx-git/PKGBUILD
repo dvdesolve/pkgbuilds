@@ -42,11 +42,11 @@ package() {
   install -m755 -d "${pkgdir}/etc/udev/rules.d"
   install -m755 -d "${pkgdir}/usr/{bin,share/applications,share/pixmaps}"
 
-  install -D -m644 21-fcd.rules "${pkgdir}/etc/udev/rules.d"
-  install -D -m644 gqrx.desktop "${pkgdir}/usr/share/applications"
-  install -D -m644 gqrx.png "${pkgdir}/usr/share/pixmaps"
+  install -Dm644 21-fcd.rules "${pkgdir}/etc/udev/rules.d/21-fcd.rules"
+  install -Dm644 gqrx.desktop "${pkgdir}/usr/share/applications/gqrx.desktop"
+  install -Dm644 gqrx.png "${pkgdir}/usr/share/pixmaps/gqrx.png"
 
   cd "${pkgname}/src"
 
-  install -D -m755 gqrx "${pkgdir}/usr/bin"
+  install -Dm755 gqrx "${pkgdir}/usr/bin/gqrx"
 }
