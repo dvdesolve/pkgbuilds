@@ -4,7 +4,7 @@
 
 pkgname=acarsdec
 pkgver=3.7
-pkgrel=1
+pkgrel=2
 pkgdesc="ACARS SDR decoder"
 url="https://github.com/TLeconte/acarsdec"
 license=(custom)

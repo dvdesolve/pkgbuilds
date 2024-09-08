@@ -1,7 +1,7 @@
 pkgbase = acarsdec
 	pkgdesc = ACARS SDR decoder
 	pkgver = 3.7
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/TLeconte/acarsdec
 	arch = x86_64
 	license = custom

@@ -1,7 +1,7 @@
 pkgbase = dream
 	pkgdesc = A software radio for AM and Digital Radio Mondiale (DRM)
 	pkgver = 2.1.1
-	pkgrel = 5
+	pkgrel = 6
 	url = https://sourceforge.net/projects/drm
 	arch = i686
 	arch = x86_64
