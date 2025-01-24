@@ -1,17 +1,17 @@
 # Maintainer: Viktor Drobot (aka dviktor) linux776 [at] gmail [dot] com
 
-_pypiname=molmass
+_pypiname=PyNUTClient
 pkgname=python-${_pypiname,,}
-pkgver=2024.10.25
+pkgver=2.8.2
 pkgrel=1
-pkgdesc="Molecular mass calculations"
-arch=(i686 x86_64)
+pkgdesc="Python client bindings for NUT"
+arch=(any)
 url="http://pypi.python.org/pypi/${_pypiname}"
-license=(BSD3)
-depends=('python>=3.8')
+license=(GPL3)
+depends=('python>=2.6')
 makedepends=(python-build python-installer python-wheel python-setuptools)
 source=("https://files.pythonhosted.org/packages/source/${_pypiname::1}/${_pypiname//-/_}/${_pypiname//-/_}-${pkgver}.tar.gz")
-sha256sums=('a5757b65432775bda30332bcd5bf648427c918df2163f991bc9b279b3f81d625')
+sha256sums=('b32af28ac141bb1d05a97814ab22b1dc90f2e55a73657f99c5126384ca2df85a')
 
 build() {
   cd "${srcdir}/${_pypiname}-${pkgver}"
