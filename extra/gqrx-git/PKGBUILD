@@ -3,17 +3,17 @@
 # Contributor: Dominik Heidler <dheidler@gmail.com>
 
 pkgname=gqrx-git
-pkgver=r2571.4c825c19
+pkgver=r2636.b42210b7
 pkgrel=1
 pkgdesc="SDR receiver for Funcube Dongle, RTL-SDR, USRP and OsmoSDR devices"
 url="http://gqrx.dk/"
-license=(GPL)
+license=('GPL-3.0-only AND Apache-2.0')
 arch=(i686 x86_64)
-depends=(qt5-base qt5-svg boost-libs fftw libusb gsl alsa-lib libpulse libuhd pulse-native-provider gnuradio gnuradio-osmosdr)
-makedepends=(make patch boost git cmake)
+depends=(alsa-lib boost-libs fftw gcc-libs glibc gnuradio gnuradio-osmosdr gsl libpulse libuhd libusb libvolk pulse-native-provider qt5-base qt5-svg)
+makedepends=(boost cmake git make patch)
 optdepends=('gr-osmosdr-git: support of OsmoSDR devices')
-provides=(gqrx)
 conflicts=(gqrx)
+provides=(gqrx)
 source=("${pkgname}::git+https://github.com/csete/gqrx.git"
         "21-fcd.rules"
         "gqrx.png"
@@ -40,7 +40,9 @@ package() {
   cd "${srcdir}"
 
   install -m755 -d "${pkgdir}/etc/udev/rules.d"
-  install -m755 -d "${pkgdir}/usr/{bin,share/applications,share/pixmaps}"
+  install -m755 -d "${pkgdir}/usr/bin"
+  install -m755 -d "${pkgdir}/usr/share/applications"
+  install -m755 -d "${pkgdir}/usr/share/pixmaps"
 
   install -Dm644 21-fcd.rules "${pkgdir}/etc/udev/rules.d/21-fcd.rules"
   install -Dm644 gqrx.desktop "${pkgdir}/usr/share/applications/gqrx.desktop"

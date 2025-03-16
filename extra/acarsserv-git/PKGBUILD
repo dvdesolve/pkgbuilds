@@ -3,15 +3,15 @@
 
 pkgname=acarsserv-git
 pkgver=r8.a191e1f
-pkgrel=1
+pkgrel=2
 pkgdesc="Writes messages from acarsdec or vdlm2dec into sqlite database"
 arch=(x86_64)
-license=(GPL2)
+license=(GPL-2.0-only)
 url="https://github.com/TLeconte/acarsserv"
-depends=(sqlite)
+depends=(glibc sqlite)
 makedepends=(git)
-provides=(acarsserv)
 conflicts=(acarsserv)
+provides=(acarsserv)
 source=("${pkgname}::git+https://github.com/TLeconte/acarsserv.git")
 sha256sums=('SKIP')
 

@@ -2,30 +2,29 @@
 # Contributor: Konrad Beckmann <konrad.beckmann@gmail.com>
 
 pkgname=airspyhf-git
-_pkgname=${pkgname%-git}
 pkgver=r124.39f06a4
-pkgrel=1
+pkgrel=2
 pkgdesc="Host code for AirspyHF+ SDR."
 arch=(i686 x86_64)
 url="http://www.airspy.com"
-license=(BSD)
-depends=('libusb>=1.0')
-provides=(airspyhf)
+license=(BSD-3-Clause)
+depends=(glibc 'libusb>=1.0')
+makedepends=(cmake git)
 conflicts=(airspyhf)
-makedepends=(git cmake)
-source=("${_pkgname}::git+https://github.com/airspy/airspyhf"
+provides=(airspyhf)
+source=("${pkgname}::git+https://github.com/airspy/airspyhf"
         "52-airspyhf.rules")
 sha256sums=('SKIP'
             '5106084fb3404b04bd2d598c819cff12d095f849a1fdd7549748279ce47f5f21')
 
 pkgver() {
-  cd "${srcdir}/${_pkgname}"
+  cd "${srcdir}/${pkgname}"
 
   printf 'r%s.%s' "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 build() {
-  cd "${srcdir}/${_pkgname}"
+  cd "${srcdir}/${pkgname}"
 
   mkdir -p build
   cd build
@@ -35,8 +34,8 @@ build() {
 }
 
 package() {
-  install -Dm644 "52-airspyhf.rules" "${pkgdir}/usr/lib/udev/rules.d/52-airspyhf.rules"
+  cd "${srcdir}/${pkgname}/build"
 
-  cd "${srcdir}/${_pkgname}/build"
   make DESTDIR="${pkgdir}" install
+  install -Dm644 "${srcdir}/52-airspyhf.rules" "${pkgdir}/usr/lib/udev/rules.d/52-airspyhf.rules"
 }

@@ -5,12 +5,12 @@
 
 pkgname=qsstv
 pkgver=9.5.8
-pkgrel=3
+pkgrel=4
 pkgdesc="Receive and transmit images over radio using analog SSTV or digital DRM"
 url="https://github.com/ON4QZ/QSSTV"
-license=(GPL3)
+license=(GPL-3.0-only)
 arch=(i686 x86_64)
-depends=(qt5-base libpulse v4l-utils hamlib fftw openjpeg2 alsa-lib)
+depends=(alsa-lib gcc-libs glibc fftw hamlib libpulse openjpeg2 qt5-base v4l-utils)
 source=(https://www.qsl.net/o/on4qz//qsstv/downloads/${pkgname}_${pkgver}.tar.gz
         ${pkgname}.desktop)
 sha256sums=('c03f7fa5c680ced8fd331c25ff3e47440c9aedb48ec7b66255c6aa0ed88e7a68'
@@ -28,6 +28,6 @@ package() {
 
   make INSTALL_ROOT="${pkgdir}" install
 
-  install -Dm644 "${srcdir}/qsstv.desktop" "${pkgdir}/usr/share/applications/${pkgname}.desktop"
-  install -Dm644 "${srcdir}/${pkgname}/icons/${pkgname}.png" "${pkgdir}/usr/share/pixmaps/${pkgname}.png"
+  install -Dm644 "${srcdir}/qsstv.desktop" "${pkgdir}/usr/share/applications/qsstv.desktop"
+  install -Dm644 "${srcdir}/${pkgname}/icons/${pkgname}.png" "${pkgdir}/usr/share/pixmaps/qsstv.png"
 }

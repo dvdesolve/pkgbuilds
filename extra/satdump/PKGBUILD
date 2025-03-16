@@ -2,17 +2,17 @@
 # Contributor: Andrew O'Neill <andrew at haunted dot sh>
 
 pkgname=satdump
-pkgver=1.2.0
+pkgver=1.2.2
 pkgrel=1
 pkgdesc="A generic satellite processing software"
 url="https://github.com/SatDump/SatDump"
-license=(GPL3)
+license=(GPL-3.0-only)
 arch=(x86_64)
-depends=(airspy fftw glfw hackrf jemalloc libad9361 libpng libtiff libvolk nng ocl-icd portaudio rtl-sdr zstd)
+depends=(airspy curl fftw gcc-libs glfw glibc hackrf jemalloc libad9361 libglvnd libiio libpng libtiff libusb libvolk nng ocl-icd portaudio rtl-sdr zenity zlib zstd)
 makedepends=(boost cmake opencl-headers)
-optdepends=(limesuite bladerf)
+optdepends=(bladerf limesuite)
 source=("${pkgname}-${pkgver}.tar.gz::https://github.com/SatDump/SatDump/archive/${pkgver}.tar.gz")
-sha256sums=('099d51864a0a3e374b0d12a9ad13d8ac263b9ab0cb88d4e5b08c2b72b9afb20e')
+sha256sums=('2ab7c6126e426ad79972b274cc380c0bb04c9e755d746d67f3af92c1dd569209')
 
 build() {
   cd "${srcdir}/SatDump-${pkgver}"

@@ -6,12 +6,12 @@
 
 pkgname=libsdrplay
 pkgver=3.15.2
-pkgrel=1
+pkgrel=2
 pkgdesc="Modules for the SDRplay receiver"
 url="http://www.sdrplay.com"
-license=(custom)
+license=(LicenseRef-libsdrplay)
 arch=(x86_64)
-depends=('libusb>=1.0' systemd-libs)
+depends=(gcc-libs glibc 'libusb>=1.0' systemd-libs)
 source=("http://www.sdrplay.com/software/SDRplay_RSP_API-Linux-${pkgver}.run"
         "sdrplay.service"
         "66-sdrplay.rules")
@@ -29,13 +29,14 @@ prepare() {
 package() {
   cd "${srcdir}"
 
+  install -Dm644 "${srcdir}/sdrplay_license.txt" "${pkgdir}/usr/share/licenses/libsdrplay/LICENSE"
+
   # get API version
   _apivers=$(sed -n 's/^VERS="\(.*\)"/\1/p' install_lib.sh)
 
-  install -D -m644 sdrplay_license.txt "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
   install -D -m644 "amd64/libsdrplay_api.so.${_apivers}" "${pkgdir}/usr/lib/libsdrplay_api.so.${_apivers}"
   install -D -m755 "amd64/sdrplay_apiService" "${pkgdir}/usr/bin/sdrplay_apiService"
-  install -D -m644 "sdrplay.service" "${pkgdir}/etc/systemd/system/sdrplay.service"
+  install -D -m644 "sdrplay.service" "${pkgdir}/usr/lib/systemd/system/sdrplay.service"
 
   (cd inc && find . -type f -exec install -D -m644 "{}" "${pkgdir}/usr/include/{}" \;)
 

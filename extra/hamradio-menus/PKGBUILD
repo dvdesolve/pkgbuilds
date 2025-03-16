@@ -4,11 +4,11 @@
 
 pkgname=hamradio-menus
 pkgver=1.0
-pkgrel=3
+pkgrel=4
 pkgdesc="Ham radio (specific) XDG-compliant menu"
 arch=(any)
 url="http://www.archlinux.org/"
-license=(GPL)
+license=(GPL-2.0-or-later)
 source=(hamradio.png
         HamRadio.directory
         hamradio.menu)

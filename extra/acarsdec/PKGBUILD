@@ -4,12 +4,12 @@
 
 pkgname=acarsdec
 pkgver=3.7
-pkgrel=2
+pkgrel=3
 pkgdesc="ACARS SDR decoder"
 url="https://github.com/TLeconte/acarsdec"
-license=(custom)
+license=(GPL-2.0-only)
 arch=(x86_64)
-depends=(libusb rtl-sdr airspy)
+depends=(airspy glibc libusb rtl-sdr)
 makedepends=(cmake)
 optdepends=('acarsserv: Store messages in sqlite database')
 source=("https://github.com/TLeconte/acarsdec/archive/${pkgname}-${pkgver}.tar.gz")

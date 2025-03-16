@@ -1,11 +1,12 @@
 pkgbase = acarsserv-git
 	pkgdesc = Writes messages from acarsdec or vdlm2dec into sqlite database
 	pkgver = r8.a191e1f
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/TLeconte/acarsserv
 	arch = x86_64
-	license = GPL2
+	license = GPL-2.0-only
 	makedepends = git
+	depends = glibc
 	depends = sqlite
 	provides = acarsserv
 	conflicts = acarsserv

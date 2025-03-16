@@ -3,20 +3,20 @@
 # Contributor: éclairevoyant
 # Contributor: Marin Atanasov Nikolov <dnaeon@gmail.com>
 
-pkgname=sdrpp-git
-_pkgname=${pkgname%-git}
-pkgver=r1649.118e1fbf
+_pkgname=sdrpp
+pkgname=${_pkgname}-git
+pkgver=r1736.aa2b4b1c
 pkgrel=1
 pkgdesc="The bloat-free SDR receiver"
 arch=(x86_64)
 url="https://www.sdrpp.org/"
-license=(GPL3)
-depends=(fftw glew glfw libvolk)
+license=(GPL-3.0-only)
+depends=(fftw gcc-libs glibc glew glfw libglvnd libvolk zstd)
 _plugindeps=(airspy airspyhf-git bladerf codec2 hackrf libad9361 libiio libsdrplay limesuite rtaudio rtl-sdr portaudio soapysdr)
 makedepends=(cmake git "${_plugindeps[@]}")
 optdepends=("${_plugindeps[@]}")
-provides=("${_pkgname}")
-conflicts=("${_pkgname}")
+conflicts=(sdrpp)
+provides=(sdrpp)
 source=("${_pkgname}::git+https://github.com/AlexandreRouma/SDRPlusPlus.git")
 sha256sums=('SKIP')
 

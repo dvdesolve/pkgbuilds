@@ -1,24 +1,24 @@
 # Maintainer: Viktor Drobot (aka dviktor) linux776 [at] gmail [dot] com
-# Contributor : anish [ at ] gatech [dot] edu
+# Contributor: anish [ at ] gatech [dot] edu
 
-pkgname=dump1090-fa-git
-_pkgname=${pkgname%-fa-git}
-pkgver=r2025.e4b3c368
+_pkgname=dump1090-fa
+pkgname=${_pkgname}-git
+pkgver=r2034.2b3afa5c
 pkgrel=1
 pkgdesc="Dump1090 is a simple Mode S decoder for RTLSDR devices"
 arch=(i686 x86_64)
 url="https://github.com/flightaware/dump1090"
-license=(GPL2)
-depends=(rtl-sdr bladerf hackrf limesuite ncurses)
+license=(GPL-2.0-or-later)
+depends=(bash bladerf glibc hackrf limesuite ncurses rtl-sdr soapysdr)
 makedepends=(git patch)
 optdepends=('lighttpd: interactive map display support')
-provides=(dump1090)
 conflicts=(dump1090)
-source=("${_pkgname}::git+https://github.com/flightaware/dump1090#branch=dev"
+provides=(dump1090)
+source=("${pkgname}::git+https://github.com/flightaware/dump1090"
         "dump1090.service"
         "lighttpd.conf"
         "wisdom.patch")
-backup=("usr/share/${_pkgname}/html/config.js")
+backup=("usr/share/dump1090-fa/html/config.js")
 install='dump1090-fa.install'
 sha256sums=('SKIP'
             '137a74e573b6fbace7bf39e5ccf77f2ee4f5f5bbb08efb3634a82f8f2cdfd2aa'
@@ -26,35 +26,35 @@ sha256sums=('SKIP'
             'c920cba6bf466173c4a52a3ebb5611f301f2123e8ed3b403b7d2f42ac751c303')
 
 pkgver() {
-  cd "${srcdir}/${_pkgname}"
+  cd "${srcdir}/${pkgname}"
 
   printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 prepare() {
-  cd "${srcdir}/${_pkgname}"
+  cd "${srcdir}/${pkgname}"
 
   patch -Np0 -i "${srcdir}/wisdom.patch"
 }
 
 build() {
-  cd "${srcdir}/${_pkgname}"
+  cd "${srcdir}/${pkgname}"
 
-  make all faup1090 EXTRACFLAGS=-DHTMLPATH=\\\"/usr/share/${_pkgname}/html\\\"
+  make all faup1090 EXTRACFLAGS=-DHTMLPATH=\\\"/usr/share/dump1090-fa/html\\\"
 }
 
 package() {
-  install -dm755 "${pkgdir}/usr/share/${_pkgname}/html"
-  install -dm755 "${pkgdir}/usr/share/${_pkgname}/bladerf"
+  install -dm755 "${pkgdir}/usr/share/dump1090-fa/html"
+  install -dm755 "${pkgdir}/usr/share/dump1090-fa/bladerf"
 
-  install -Dm755 "${srcdir}/${_pkgname}/dump1090" "${pkgdir}/usr/bin/dump1090"
-  install -Dm755 "${srcdir}/${_pkgname}/view1090" "${pkgdir}/usr/bin/view1090"
-  install -Dm755 "${srcdir}/${_pkgname}/faup1090" "${pkgdir}/usr/lib/piaware/helpers/faup1090"
-  install -Dm755 "${srcdir}/${_pkgname}/starch-benchmark" "${pkgdir}/usr/lib/${_pkgname}/starch-benchmark"
-  install -Dm755 "${srcdir}/${_pkgname}/debian/generate-wisdom" "${pkgdir}/usr/lib/${_pkgname}/generate-wisdom"
+  install -Dm755 "${srcdir}/${pkgname}/dump1090" "${pkgdir}/usr/bin/dump1090"
+  install -Dm755 "${srcdir}/${pkgname}/view1090" "${pkgdir}/usr/bin/view1090"
+  install -Dm755 "${srcdir}/${pkgname}/faup1090" "${pkgdir}/usr/lib/piaware/helpers/faup1090"
+  install -Dm755 "${srcdir}/${pkgname}/starch-benchmark" "${pkgdir}/usr/lib/dump1090-fa/starch-benchmark"
+  install -Dm755 "${srcdir}/${pkgname}/debian/generate-wisdom" "${pkgdir}/usr/lib/dump1090-fa/generate-wisdom"
   install -Dm644 "${srcdir}/dump1090.service" "${pkgdir}/usr/lib/systemd/system/dump1090.service"
-  install -Dm644 "${srcdir}"/lighttpd.conf "${pkgdir}/usr/share/${_pkgname}/lighttpd.conf"
+  install -Dm644 "${srcdir}"/lighttpd.conf "${pkgdir}/usr/share/dump1090-fa/lighttpd.conf"
 
-  cp -r "${srcdir}"/"${_pkgname}"/public_html/* "${pkgdir}/usr/share/${_pkgname}/html"
-  cp -r "${srcdir}"/"${_pkgname}"/bladerf/* "${pkgdir}/usr/share/${_pkgname}/bladerf"
+  cp -r "${srcdir}"/"${pkgname}"/public_html/* "${pkgdir}/usr/share/dump1090-fa/html"
+  cp -r "${srcdir}"/"${pkgname}"/bladerf/* "${pkgdir}/usr/share/dump1090-fa/bladerf"
 }
