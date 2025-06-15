@@ -1,7 +1,7 @@
 pkgbase = satdump
 	pkgdesc = A generic satellite processing software
 	pkgver = 1.2.2
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/SatDump/SatDump
 	arch = x86_64
 	license = GPL-3.0-only
@@ -33,6 +33,8 @@ pkgbase = satdump
 	optdepends = bladerf
 	optdepends = limesuite
 	source = satdump-1.2.2.tar.gz::https://github.com/SatDump/SatDump/archive/1.2.2.tar.gz
+	source = satdump.patch
 	sha256sums = 2ab7c6126e426ad79972b274cc380c0bb04c9e755d746d67f3af92c1dd569209
+	sha256sums = 24a616362048912cfb42030a06f0abe5077326f72b301941be6dab13c9cd3330
 
 pkgname = satdump

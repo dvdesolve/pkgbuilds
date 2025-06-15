@@ -3,7 +3,7 @@
 
 _pkgname=dump1090-fa
 pkgname=${_pkgname}-git
-pkgver=r2034.2b3afa5c
+pkgver=r2045.1d3a01fc
 pkgrel=1
 pkgdesc="Dump1090 is a simple Mode S decoder for RTLSDR devices"
 arch=(i686 x86_64)
@@ -17,13 +17,15 @@ provides=(dump1090)
 source=("${pkgname}::git+https://github.com/flightaware/dump1090"
         "dump1090.service"
         "lighttpd.conf"
-        "wisdom.patch")
+        "wisdom.patch"
+        "nullstrs.patch")
 backup=("usr/share/dump1090-fa/html/config.js")
 install='dump1090-fa.install'
 sha256sums=('SKIP'
             '137a74e573b6fbace7bf39e5ccf77f2ee4f5f5bbb08efb3634a82f8f2cdfd2aa'
             'cd1667653410c6e3a2d8b0069b6e2ef4f92ade686530529c74fe60c26d1b3e4f'
-            'c920cba6bf466173c4a52a3ebb5611f301f2123e8ed3b403b7d2f42ac751c303')
+            'c920cba6bf466173c4a52a3ebb5611f301f2123e8ed3b403b7d2f42ac751c303'
+            'fcf816d94bdde15ab347c8fc7b4853458e3f61fe01467e14ef81cdf84230e1a8')
 
 pkgver() {
   cd "${srcdir}/${pkgname}"
@@ -35,6 +37,7 @@ prepare() {
   cd "${srcdir}/${pkgname}"
 
   patch -Np0 -i "${srcdir}/wisdom.patch"
+  patch -Np0 -i "${srcdir}/nullstrs.patch"
 }
 
 build() {

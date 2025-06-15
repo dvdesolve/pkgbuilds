@@ -2,8 +2,8 @@
 # Contributor: Konrad Beckmann <konrad.beckmann@gmail.com>
 
 pkgname=airspyhf-git
-pkgver=r124.39f06a4
-pkgrel=2
+pkgver=r128.7b94498
+pkgrel=1
 pkgdesc="Host code for AirspyHF+ SDR."
 arch=(i686 x86_64)
 url="http://www.airspy.com"
@@ -29,7 +29,7 @@ build() {
   mkdir -p build
   cd build
 
-  cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr -Wno-dev ../
+  cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -Wno-dev ../
   make
 }
 

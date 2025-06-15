@@ -3,7 +3,7 @@
 # Contributor: Dominik Heidler <dheidler@gmail.com>
 
 pkgname=gqrx-git
-pkgver=r2636.b42210b7
+pkgver=r2648.1a8ab3a3
 pkgrel=1
 pkgdesc="SDR receiver for Funcube Dongle, RTL-SDR, USRP and OsmoSDR devices"
 url="http://gqrx.dk/"

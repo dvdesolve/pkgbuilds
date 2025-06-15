@@ -3,7 +3,7 @@
 
 pkgname=satdump
 pkgver=1.2.2
-pkgrel=1
+pkgrel=2
 pkgdesc="A generic satellite processing software"
 url="https://github.com/SatDump/SatDump"
 license=(GPL-3.0-only)
@@ -11,8 +11,16 @@ arch=(x86_64)
 depends=(airspy curl fftw gcc-libs glfw glibc hackrf jemalloc libad9361 libglvnd libiio libpng libtiff libusb libvolk nng ocl-icd portaudio rtl-sdr zenity zlib zstd)
 makedepends=(boost cmake opencl-headers)
 optdepends=(bladerf limesuite)
-source=("${pkgname}-${pkgver}.tar.gz::https://github.com/SatDump/SatDump/archive/${pkgver}.tar.gz")
-sha256sums=('2ab7c6126e426ad79972b274cc380c0bb04c9e755d746d67f3af92c1dd569209')
+source=("${pkgname}-${pkgver}.tar.gz::https://github.com/SatDump/SatDump/archive/${pkgver}.tar.gz"
+        "satdump.patch")
+sha256sums=('2ab7c6126e426ad79972b274cc380c0bb04c9e755d746d67f3af92c1dd569209'
+            '24a616362048912cfb42030a06f0abe5077326f72b301941be6dab13c9cd3330')
+
+prepare() {
+  cd "${srcdir}/SatDump-${pkgver}"
+
+  patch -Np0 -i "${srcdir}/satdump.patch"
+}
 
 build() {
   cd "${srcdir}/SatDump-${pkgver}"
@@ -20,7 +28,7 @@ build() {
   mkdir build
   cd build
 
-  cmake -DCMAKE_BUILD_TYPE=Release ..
+  cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -Wno-dev ..
   make
 }
 

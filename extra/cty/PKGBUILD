@@ -4,7 +4,7 @@
 # Contributor: Bob Finch <w9ya@qrparci.net>
 
 pkgname=cty
-pkgver=3503
+pkgver=3517
 pkgrel=1
 pkgdesc="The package represents databases of entities (countries), prefixes and callsigns that are used by amateur (ham) radio logging software - CONTESTING VERSION."
 arch=(any)
@@ -13,7 +13,7 @@ conflicts=(bigcty)
 url="http://www.country-files.com/cty"
 license=(GPL-3.0-only)
 source=(http://www.country-files.com/cty/download/${pkgver}/${pkgname}-${pkgver}.zip)
-sha256sums=('f3eac6fbc29a924a4da627290eaf0b335c179ef1f2280e375690ed42fdfaaa3a')
+sha256sums=('b8951a1fbefe7847317a129d54bd5ff73f0115cae616ba6970c733730e2589ca')
 
 package() {
   cd "${srcdir}"

@@ -1,0 +1,32 @@
+--- ais_charset.c	2025-06-15 18:37:54.327561089 +0300
++++ ais_charset.c	2025-06-15 18:38:11.682700336 +0300
+@@ -1,3 +1,3 @@
+ #include "ais_charset.h"
+ 
+-char ais_charset[64] = "@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_ !\"#$%&'()*+,-./0123456789:;<=>?";
++char ais_charset[65] = "@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_ !\"#$%&'()*+,-./0123456789:;<=>?";
+--- ais_charset.h	2025-06-15 18:37:54.327561089 +0300
++++ ais_charset.h	2025-06-15 18:38:27.314825981 +0300
+@@ -1,6 +1,6 @@
+ #ifndef AIS_CHARSET_H
+ #define AIS_CHARSET_H
+ 
+-extern char ais_charset[64];
++extern char ais_charset[65];
+ 
+ #endif
+--- interactive.c	2025-06-15 18:37:54.335665408 +0300
++++ interactive.c	2025-06-15 18:38:40.365931040 +0300
+@@ -138,11 +138,11 @@
+     struct aircraft *a = Modes.aircrafts;
+     static uint64_t next_update;
+     static bool need_clear = true;
+     uint64_t now = mstime();
+     char progress;
+-    char spinner[4] = "|/-\\";
++    char spinner[5] = "|/-\\";
+     int valid = 0;
+     double signalMax = -100.0;
+     double signalMin = +100.0;
+     double signalMean = 0.0;
+     double distanceMax = 0.0;
