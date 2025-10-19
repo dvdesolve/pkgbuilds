@@ -15,13 +15,13 @@ source=("${pkgname}::git+https://github.com/SpiritQuaddicted/sourceforge-file-do
 sha256sums=('SKIP')
 
 pkgver() {
-    cd "${srcdir}/${pkgname}"
+  cd "${srcdir}/${pkgname}"
 
-    printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
 }
 
 package() {
-    cd "${srcdir}/${pkgname}"
+  cd "${srcdir}/${pkgname}"
 
-    install -Dm755 sourceforge-file-downloader.sh "${pkgdir}/usr/bin/sf-down"
+  install -Dm755 sourceforge-file-downloader.sh "${pkgdir}/usr/bin/sf-down"
 }
