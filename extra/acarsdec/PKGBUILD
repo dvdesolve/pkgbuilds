@@ -3,37 +3,29 @@
 # Contributor: Michal Krenek (Mikos) <m.krenek@gmail.com>
 
 pkgname=acarsdec
-pkgver=3.7
-pkgrel=3
+pkgver=4.4.1
+pkgrel=1
 pkgdesc="ACARS SDR decoder"
-url="https://github.com/TLeconte/acarsdec"
+url="https://github.com/f00b4r0/acarsdec/"
 license=(GPL-2.0-only)
 arch=(x86_64)
-depends=(airspy glibc libusb rtl-sdr)
+depends=(airspy alsa-lib cjson glibc libacars libsndfile rtl-sdr soapysdr)
 makedepends=(cmake)
 optdepends=('acarsserv: Store messages in sqlite database')
-source=("https://github.com/TLeconte/acarsdec/archive/${pkgname}-${pkgver}.tar.gz")
-sha256sums=('1cb8cab03642bfdfcefb7b003f292cfac0f11051ff07666e714bbb4905717005')
+source=("https://github.com/f00b4r0/acarsdec/archive/refs/tags/v${pkgver}.tar.gz")
+sha256sums=('39a27ea9dd491fe23ca7dba66b69504e2e0251f6ebbb51c392b7a076f53f0250')
 
 build() {
-  cd "${pkgname}-${pkgname}-${pkgver}"
+  cd "${pkgname}-${pkgver}"
 
-  mkdir -p build-airspy
-  cd build-airspy
-  cmake .. -Dairspy=ON
+  mkdir -p build
+  cd build
+  cmake .. -DRTLSDR=ON -DSOAPYSDR=ON -DAIRSPY=ON -DSNDFILE=ON -DALSA=ON -DLIBACARS=ON -DCJSON=ON
   make
-  cd ..
-
-  mkdir -p build-rtlsdr
-  cd build-rtlsdr
-  cmake .. -Drtl=ON
-  make
-  cd ..
 }
 
 package() {
-  cd "${pkgname}-${pkgname}-${pkgver}"
+  cd "${pkgname}-${pkgver}"
 
-  install -Dm755 build-airspy/acarsdec "${pkgdir}/usr/bin/acarsdec-airspy"
-  install -Dm755 build-rtlsdr/acarsdec "${pkgdir}/usr/bin/acarsdec-rtlsdr"
+  install -Dm755 build/acarsdec "${pkgdir}/usr/bin/acarsdec"
 }

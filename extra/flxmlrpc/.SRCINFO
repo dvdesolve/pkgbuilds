@@ -1,14 +1,14 @@
 pkgbase = flxmlrpc
 	pkgdesc = XMLRPC for fldigi and other Ham Radio apps
 	pkgver = 1.0.1
-	pkgrel = 4
+	pkgrel = 5
 	url = http://www.w1hkj.com/downloads/flxmlrpc/
 	arch = i686
 	arch = x86_64
 	license = LGPL-3.0-only
-	makedepends = git
-	makedepends = automake
 	makedepends = autoconf
+	makedepends = automake
+	makedepends = git
 	makedepends = pkg-config
 	depends = gcc-libs
 	depends = glibc

@@ -1,6 +1,6 @@
 pkgbase = satdump-git
 	pkgdesc = A generic satellite processing software
-	pkgver = r5693.d6a9b925
+	pkgver = r5782.63d3cd96c
 	pkgrel = 1
 	url = https://github.com/SatDump/SatDump
 	arch = x86_64
@@ -36,6 +36,8 @@ pkgbase = satdump-git
 	provides = satdump
 	conflicts = satdump
 	source = satdump-git::git+https://github.com/SatDump/SatDump.git
+	source = satdump.patch
 	sha256sums = SKIP
+	sha256sums = 3963b19d91f99d1d72112b6d8c78b876b7bf9aab6e08e57973e5e83a1198ae71
 
 pkgname = satdump-git

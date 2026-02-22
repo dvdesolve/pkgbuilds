@@ -3,7 +3,7 @@
 
 _pkgname=dump1090-fa
 pkgname=${_pkgname}-git
-pkgver=r2045.1d3a01fc
+pkgver=r2047.4f47d12a
 pkgrel=1
 pkgdesc="Dump1090 is a simple Mode S decoder for RTLSDR devices"
 arch=(i686 x86_64)

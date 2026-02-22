@@ -2,7 +2,7 @@
 # Contributor: Konrad Beckmann <konrad.beckmann@gmail.com>
 
 pkgname=airspyhf-git
-pkgver=r128.7b94498
+pkgver=r151.30e0422
 pkgrel=1
 pkgdesc="Host code for AirspyHF+ SDR."
 arch=(i686 x86_64)

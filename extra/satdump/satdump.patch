@@ -1,6 +1,8 @@
---- plugins/inmarsat_support/aero/libacars/list.c	2024-11-29 07:58:19.000000000 -0500
-+++ plugins/inmarsat_support/aero/libacars/list.c	2025-05-18 11:52:09.870677811 -0400
-@@ -36,14 +36,14 @@ size_t la_list_length(la_list const *l)
+--- plugins/inmarsat_support/aero/libacars/list.c	2024-11-29 15:58:19.000000000 +0300
++++ plugins/inmarsat_support/aero/libacars/list.c	2026-02-22 13:21:11.750786151 +0300
+@@ -34,18 +34,18 @@
+ 	for(; l != NULL; l = la_list_next(l), len++)
+ 		;
  	return len;
  }
  
@@ -17,7 +19,11 @@
  	if(l == NULL) {
  		return;
  	}
-@@ -57,7 +57,7 @@ void la_list_free_full_with_ctx(la_list
+ 	la_list_free_full_with_ctx(l->next, node_free, ctx);
+ 	l->next = NULL;
+@@ -55,11 +55,11 @@
+ 		LA_XFREE(l->data);
+ 	}
  	LA_XFREE(l);
  }
  
@@ -26,9 +32,13 @@
  	if(l == NULL) {
  		return;
  	}
---- plugins/inmarsat_support/aero/libacars/list.h	2024-11-29 07:58:19.000000000 -0500
-+++ plugins/inmarsat_support/aero/libacars/list.h	2025-05-18 11:52:09.871279212 -0400
-@@ -22,10 +22,10 @@ struct la_list {
+ 	la_list_free_full(l->next, node_free);
+ 	l->next = NULL;
+--- plugins/inmarsat_support/aero/libacars/list.h	2024-11-29 15:58:19.000000000 +0300
++++ plugins/inmarsat_support/aero/libacars/list.h	2026-02-22 13:21:58.705878678 +0300
+@@ -20,14 +20,14 @@
+ };
+ 
  la_list *la_list_next(la_list const *l);
  la_list *la_list_append(la_list *l, void *data);
  size_t la_list_length(la_list const *l);
@@ -42,9 +52,32 @@
  
  #ifdef __cplusplus
  }
---- src-core/libs/sol2/sol.hpp	2024-11-29 07:58:19.000000000 -0500
-+++ src-core/libs/sol2/sol.hpp	2025-05-18 11:52:09.980519343 -0400
-@@ -6747,13 +6747,13 @@ namespace sol {
+ #endif
+ 
+--- src-core/common/calibration.h	2024-11-29 15:58:19.000000000 +0300
++++ src-core/common/calibration.h	2026-02-22 13:23:07.365014861 +0300
+@@ -1,13 +1,13 @@
+ #pragma once
+ 
+ #include <math.h>
+ #include <map>
+ 
+-#define c1 1.1910427e-05
+-#define c2 1.4387752
+-#define e_num 2.7182818
++constexpr double c1 = 1.1910427e-05;
++constexpr double c2 = 1.4387752;
++constexpr double e_num = 2.7182818;
+ 
+ double temperature_to_radiance(double t, double v);
+ 
+ double radiance_to_temperature(double L, double v);
+ 
+--- src-core/libs/sol2/sol.hpp	2024-11-29 15:58:19.000000000 +0300
++++ src-core/libs/sol2/sol.hpp	2026-02-22 13:24:10.747141426 +0300
+@@ -6745,17 +6745,17 @@
+ 
+ 		/// Constructs the value in-place, destroying the current one if there is
  		/// one.
  		///
  		/// \group emplace
@@ -60,10 +93,14 @@
  
  		/// Swaps this optional with the other.
  		///
-@@ -28904,4 +28904,4 @@ namespace sol {
+ 		/// If neither optionals have a value, nothing happens.
+ 		/// If both have a value, the values are swapped.
+@@ -28902,6 +28902,6 @@
+ #endif // Unreal Engine 4 Bullshit
+ 
  #endif // SOL_HPP
  // end of sol/sol.hpp
  
 -#endif // SOL_SINGLE_INCLUDE_HPP
-\ No newline at end of file
+\ В конце файла нет новой строки
 +#endif // SOL_SINGLE_INCLUDE_HPP

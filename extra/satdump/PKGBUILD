@@ -3,7 +3,7 @@
 
 pkgname=satdump
 pkgver=1.2.2
-pkgrel=2
+pkgrel=3
 pkgdesc="A generic satellite processing software"
 url="https://github.com/SatDump/SatDump"
 license=(GPL-3.0-only)
@@ -14,7 +14,7 @@ optdepends=(bladerf limesuite)
 source=("${pkgname}-${pkgver}.tar.gz::https://github.com/SatDump/SatDump/archive/${pkgver}.tar.gz"
         "satdump.patch")
 sha256sums=('2ab7c6126e426ad79972b274cc380c0bb04c9e755d746d67f3af92c1dd569209'
-            '24a616362048912cfb42030a06f0abe5077326f72b301941be6dab13c9cd3330')
+            'f10db861bf93ee6d80d5138a62665057a17cf3591118810fbaaf59900e1335c6')
 
 prepare() {
   cd "${srcdir}/SatDump-${pkgver}"

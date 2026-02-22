@@ -5,16 +5,27 @@
 # Contributor: Bob Finch <w9ya@qrparci.net>
 
 pkgname=fldigi
-pkgver=4.2.06
+pkgver=4.2.11
 pkgrel=1
 pkgdesc="Digital Modem Program for Amateur Radio"
 arch=(i686 x86_64)
-url="http://w1hkj.com"
+url="http://w1hkj.org"
 license=(GPL-2.0-or-later)
-depends=(cty fltk 'flxmlrpc>=1.0.1' gcc-libs glibc hamlib hamradio-menus libpng libpulse libsamplerate libsndfile libx11 portaudio systemd-libs)
+depends=(cty fltk 'flxmlrpc>=1.0.1' gcc-libs glibc hamlib hamradio-menus libgpiod libpng libpulse libsamplerate libsndfile libx11 portaudio systemd-libs)
 optdepends=('pulseaudio: pulseaudio support')
-source=(http://w1hkj.com/files/fldigi/${pkgname}-${pkgver}.tar.gz)
-sha256sums=('4360de225d6f8cfeb9bb6a5be6ac492e52702c8f704f87609c452d3bcb1b6c08')
+source=(http://w1hkj.org/files/fldigi/${pkgname}-${pkgver}.tar.gz
+        flarq.patch
+        wayland.patch)
+sha256sums=('762b370ffe9cae773a2a03b512d0b7242e7e90407c11d5abbd2d31ae6501664f'
+            '3bdbd3fe1b8d7864f46418606e1ab98ca45b48fecd2338a573074c4185dbf380'
+            'd172f0c5e76853f49768de5294cffa4f07330db1f866e59eede6de77998fb9f5')
+
+prepare() {
+  cd "${srcdir}/${pkgname}-${pkgver}"
+
+  patch -Np0 -i "${srcdir}/flarq.patch"
+  patch -Np0 -i "${srcdir}/wayland.patch"
+}
 
 build() {
   cd "${srcdir}/${pkgname}-${pkgver}"

@@ -6,7 +6,7 @@
 
 pkgname=libsdrplay
 pkgver=3.15.2
-pkgrel=2
+pkgrel=3
 pkgdesc="Modules for the SDRplay receiver"
 url="http://www.sdrplay.com"
 license=(LicenseRef-libsdrplay)
@@ -14,10 +14,12 @@ arch=(x86_64)
 depends=(gcc-libs glibc 'libusb>=1.0' systemd-libs)
 source=("http://www.sdrplay.com/software/SDRplay_RSP_API-Linux-${pkgver}.run"
         "sdrplay.service"
-        "66-sdrplay.rules")
+        "66-sdrplay.rules"
+        "20-sdrplay.hwdb")
 sha256sums=('3a97ca764263bbe76fb0f2220e6408942357e8864c19e1408a6d6987af382fe3'
             '5514e3618699e0f6bfad85dc1381bb18ee938269c30ac81f25c8888f0cddd565'
-            'a1b640b37f95ce7404363dc65b9e9608bb221aece353a370c52a0f8fa6b4bdab')
+            'a1b640b37f95ce7404363dc65b9e9608bb221aece353a370c52a0f8fa6b4bdab'
+            '8c2bda0690fb16d74e4b7836cf4c4a4a725029fed1546a42b7a8ca193eb47c95')
 
 prepare() {
   cd "${srcdir}"
@@ -41,6 +43,7 @@ package() {
   (cd inc && find . -type f -exec install -D -m644 "{}" "${pkgdir}/usr/include/{}" \;)
 
   install -D -m644 66-sdrplay.rules "${pkgdir}/etc/udev/rules.d/66-sdrplay.rules"
+  install -D -m644 20-sdrplay.hwdb "${pkgdir}/etc/udev/hwdb.d/20-sdrplay.hwdb"
 
   cd "${pkgdir}/usr/lib"
   ln -s libsdrplay_api.so.${_apivers} libsdrplay_api.so.2
